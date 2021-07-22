@@ -1,6 +1,6 @@
 # nest-mongo-docker-env
 
-## DEV启动
+## 启动
 
 启动nodejs服务器、mongodb、mongo-express
 ```bash
