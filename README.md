@@ -9,6 +9,7 @@ docker-compose up -d dev mongodb mongo-express # 启动
 
 docker ps  # 查看各个容器状态
 
+docker-compose up -d -V dev  # npm安装了新的包时候，重新创建匿名数据卷（node_modules）
 docker logs server-dev 
 docker logs server-dev -f # 持续输出logs
 docker exec -it server-mongodb bash # 进入mongo容器
@@ -24,3 +25,5 @@ docker exec -it server-mongodb bash # 进入mongo容器
 - [Docker从入门到实践](https://yeasy.gitbook.io/docker_practice/compose/compose_file)
 - [Eggjs Dockerfile](https://github.com/eggjs/docker/blob/master/Dockerfile)
 - [`@nestjs/mongoose`](https://github.com/nestjs/mongoose)
+- [Docker-compose: node_modules not present in a volume after npm install succeeds](https://stackoverflow.com/a/32785014/12395601)
+- [Top 4 Tactics To Keep Node.js Rockin’ in Docker](https://www.docker.com/blog/keep-nodejs-rockin-in-docker/)
