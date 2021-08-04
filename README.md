@@ -18,7 +18,7 @@
 1. 创建 `NestJS` 项目
 2. 容器化 `NestJS` 项目
 3. 使用 `Docker-Compose` 编排容器
-
+4. 在 `NestJS` 项目中连接 `MongoDB` 服务
 
 ### 创建 `NestJS` 项目
 [Introduction | NestJS](https://docs.nestjs.com/)
@@ -177,7 +177,44 @@ networks:
   server-network:
 ```
 
-## 基本使用
+到这一步，我们已经完成了容器化的所有步骤，剩下的就是在 `NestJS` 去连接 `MongoDB` 服务
+
+### 在 `NestJS` 项目中连接 `MongoDB` 服务
+我们使用 `NestJS` 推荐的 `@nestjs/mongoose` 工具来连接 `MongoDB` 服务
+
+1. 安装 `@nestjs/mongoose`
+``` bash
+$ npm install --save @nestjs/mongoose mongoose 
+# or yarn
+$ yarn add -D @nestjs/mongoose mongoose 
+```
+
+2. 连接 `MongoDB` 服务
+
+`app.module.ts`
+``` ts
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
+
+const url = process.env.MONGO_URL || 'localhost';
+
+@Module({
+  controllers: [AppController],
+  providers: [AppService],
+  imports: [
+    MongooseModule.forRoot(
+      `mongodb://${url}:27017?serverSelectionTimeoutMS=2000&authSource=admin`,
+    ),
+  ],
+})
+export class AppModule {}
+```
+> 需要注意的是我们使用的 `mongodb` 连接地址 `process.env.MONGO_URL` 是 `docker-compose.yml` 中定义的 `mongodb` 服务的地址，参考 [Accessing a docker container from another container。](https://stackoverflow.com/questions/42385977/accessing-a-docker-container-from-another-container)
+
+## 启动项目
+现在，我们已经完成了所有的配置工作，可以把项目给跑起来了。
 
 启动 `NestJS` 服务、`Mongo` 服务和 `Mongo-Express` 服务。
 

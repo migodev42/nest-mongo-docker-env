@@ -6,7 +6,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 const url = process.env.MONGO_URL || 'localhost';
 
 @Module({
-  // imports: [MongooseModule.forRoot(`mongodb://${url}:27017/test`)],
   controllers: [AppController],
   providers: [AppService],
   imports: [
