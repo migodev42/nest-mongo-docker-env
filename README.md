@@ -79,10 +79,10 @@ CMD ["node", "dist/main"]
 ```
 
 这样一个 `NestJS` 项目的 `Docker` 镜像就定制好了。
-> 由于还有 `MongoDB` 相关的容器服务，我们不直接使用 `Docker` 命令来构建、运行，而是使用 `Docker-Compose` 编排容器
+> 由于还有 `MongoDB` 相关的容器服务，我们不直接使用 `Docker` 命令来构建、运行，而是使用 `Docker-Compose` 编排容器。
 
 ### 使用 `Docker-Compose` 编排容器
-`Docker-Compose` 的 `docker-compose.yml` 配置文件可以将一组相关联的应用容器定义为一个项目，这样我们可以很方便的管理 `NestJS` 和 `MongoDB` 的服务
+`Docker-Compose` 的 `docker-compose.yml` 配置文件可以将一组相关联的应用容器定义为一个项目，这样我们可以很方便的管理 `NestJS` 和 `MongoDB` 的服务。
 
 1. 在 `NestJS` 项目根目录新建一个 `docker-compose.yml` 文件
 ``` bash
@@ -177,10 +177,10 @@ networks:
   server-network:
 ```
 
-到这一步，我们已经完成了容器化的所有步骤，剩下的就是在 `NestJS` 去连接 `MongoDB` 服务
+到这一步，我们已经完成了容器化的所有步骤，剩下的就是在 `NestJS` 去连接 `MongoDB` 服务。
 
 ### 在 `NestJS` 项目中连接 `MongoDB` 服务
-我们使用 `NestJS` 推荐的 `@nestjs/mongoose` 工具来连接 `MongoDB` 服务
+我们使用 `NestJS` 推荐的 `@nestjs/mongoose` 工具来连接 `MongoDB` 服务。
 
 1. 安装 `@nestjs/mongoose`
 ``` bash
@@ -216,13 +216,13 @@ export class AppModule {}
 ## 启动项目
 现在，我们已经完成了所有的配置工作，可以把项目给跑起来了。
 
-启动 `NestJS` 服务、`Mongo` 服务和 `Mongo-Express` 服务。
+启动 `NestJS` 服务、`Mongo` 服务和 `Mongo-Express` 服务
 
 ```bash
 $ docker-compose up -d dev mongodb mongo-express
 ```
 
->注意：当你使用 `npm` 安装了新的 `package` 时，需要使用 `-V` 参数来重新创建容器的 `node_modules` 匿名数据卷
+>注意：当你使用 `npm` 安装了新的 `package` 时，需要使用 `-V` 参数来重新创建容器的 `node_modules` 匿名数据卷。
 ``` bash
 $ docker-compose up -d -V dev
 ```
